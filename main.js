@@ -44,3 +44,7 @@ ipcMain.handle('get-disks', async () => {
         return { success: false, error: error.message };
     }
 });
+
+ipcMain.on('close-my-tuff-window', () => {
+    app.quit();
+});
