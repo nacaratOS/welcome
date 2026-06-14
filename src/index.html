@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         const tryBtn = document.getElementById('try');
         const installBtn = document.getElementById('install');
 
@@ -30,7 +30,16 @@
             document.body.classList.add('animate-out');
         }
 
-        tryBtn.addEventListener('click', startAnimation);
+        tryBtn.addEventListener('click', () => {
+            startAnimation();
+            
+            const { ipcRenderer } = require('electron');
+            
+            setTimeout(() => {
+                ipcRenderer.send('close-my-tuff-window');
+            }, 1000);
+        });
+
         installBtn.addEventListener('click', startAnimation);
 
         function gecikmemoruk(url) {
