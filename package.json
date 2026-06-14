@@ -4,25 +4,34 @@
   "description": "Maestro Greeter",
   "main": "main.js",
   "scripts": {
-  "start": "electron .",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
+    "start": "electron .",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/MaestroOSX/welcome.git"
+  },
+  "build": {
+    "appId": "com.nacarat.welcome",
+    "linux": {
+      "target": ["AppImage"],
+      "category": "System"
+    }
   },
   "keywords": [
     "greeter",
     "tour",
     "welcome"
   ],
-  "author": "erdemkaymak",
+  "author": "Erdem Kaymak <yusuferdemyek@gmail.com>",
   "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/MaestroOSX/welcome/issues"
   },
   "homepage": "https://github.com/MaestroOSX/welcome#readme",
   "devDependencies": {
-    "electron": "^41.1.0"
+    "electron": "^41.1.0",
+    "electron-builder": "^26.8.1"
   }
 }
