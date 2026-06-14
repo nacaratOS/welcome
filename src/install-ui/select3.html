@@ -73,10 +73,16 @@
             color: #666;
             pointer-events: none;
         }
+
+        #body {
+            transition: transform 0.6s ease, opacity 0.5s ease;
+        }
     </style>
 </head>
 
-<body>
+<body id="body">
+
+    <script src="gecikmemoruk.js"></script>
 
     <!-- <img id="localeicon" src="../icons/preferences-desktop-locale.svg" alt="" width="15%"> -->
     <h1>Bölge ve Saat Dilimi</h1>
@@ -87,7 +93,7 @@
 
     <div id="info">Bir bölge seçmek için haritaya tıklayın</div>
 
-    <button id="continue-btn">Devam Et</button>
+    <button id="continue-btn" onclick="gecikmemoruk('select4.html')">Devam Et</button>
 
     <script>
         const container = document.getElementById('locNclock');
