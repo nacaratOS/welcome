@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neredeyse Bitti</title>
+    <link rel="stylesheet" href="../style/style.css">
+
+    <style>
+        #laststeps {
+            width: 85%;
+            max-width: 500px;
+            background: #252525;
+            border-radius: 40px;
+            border: 2px solid #333;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        #everything {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        #bootloader-selecter {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+        }
+
+        #bootloader-options {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .disk.whichdisk {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 15px 25px;
+            background: #2f2f2f;
+            border: 1px solid #444;
+            border-radius: 20px;
+            box-sizing: border-box;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .bl-name {
+            font-size: 18px;
+            color: #fff;
+            font-family: 'SF Pro Display', 'Arimo', sans-serif;
+            font-weight: 610;
+        }
+
+        .laststeps-text {
+            font-size: 22px;
+            color: #fff;
+            font-family: 'SF Pro Display', 'Arimo', sans-serif;
+            font-weight: 610;
+        }
+
+        .disk.whichdisk:hover {
+            background: #3a3a3a;
+            border-color: #555;
+            cursor: pointer;
+            scale: 1.02;
+        }
+
+        .disk.whichdisk.selected {
+            background: linear-gradient(to right, #4a90e2, #65a4ec);
+        }
+    </style>
+</head>
+
+<body id="body"
+    style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0;">
+
+    <h1 style="color: white; font-family: sans-serif; margin-bottom: 30px;">Neredeyse Bitti</h1>
+
+    <div id="laststeps">
+
+        <div id="everything">
+            <div id="bootloader-selecter">
+                <span class="laststeps-text">Önyükleyici seçin</span>
+
+                <div id="bootloader-options">
+                    <div class="disk whichdisk">
+                        <img src="../icons/bootloader.svg" alt="" width="30px">
+                        <span class="bl-name">GRUB</span>
+                    </div>
+
+                    <div class="disk whichdisk">
+                        <img src="../icons/bootloader.svg" alt="" width="30px">
+                        <span class="bl-name">systemd-boot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button id="continue-btn" onclick="gecikmemoruk('finish.html')">Devam Et</button>
+
+    <script src="gecikmemoruk.js"></script>
+
+    <script>
+        const options = document.querySelectorAll('.whichdisk');
+
+        options.forEach(option => {
+            option.addEventListener('click', function () {
+                options.forEach(opt => opt.classList.remove('selected'));
+
+                this.classList.add('selected');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
