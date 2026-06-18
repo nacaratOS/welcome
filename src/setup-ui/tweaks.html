@@ -1,11 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nacarat Tweaks</title>
+    <link rel="stylesheet" href="../style/style.css">
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+        }
+
+        #menu {
+            width: 85%;
+            height: 100%;
+            background: #313131;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: row;
+            border: 4px solid #1f1f1f;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #1c1c1e;
+            border-right: 1px solid rgba(255, 255, 255, .08);
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 8px;
+            box-sizing: border-box;
+        }
+
+        .sidebar-item {
+            padding: 13px 18px;
+            color: #b8b8b8;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+            font-size: 15px;
+            font-weight: 550;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all .25s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .sidebar-item:hover {
+            background: #2c2c2e;
+            color: white;
+        }
+
+        .sidebar-item.active {
+            background: #2c2c2e;
+            color: white;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 28px;
+            overflow-y: auto;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+        }
+
+        .setting-group {
+            margin-bottom: 28px;
+        }
+
+        .setting-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #b8b8b8;
+            font-size: 14px;
+            font-weight: 550;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+        }
+
+        .custom-select {
+            width: 100%;
+            max-width: 320px;
+            padding: 14px 18px;
+            background: #1c1c1e;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 18px;
+            outline: none;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+            transition: all .25s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .custom-select:hover {
+            background: #2c2c2e;
+        }
+
+        .custom-select:focus {
+            border-color: rgba(255, 255, 255, .2);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1c1c1e;
+            padding: 14px 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+            transition: all .25s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        .radio-label:hover {
+            background: #2c2c2e;
+        }
+
+        .radio-label:has(input:checked) {
+            background: #2c2c2e;
+            border-color: rgba(255, 255, 255, .2);
+        }
+
+        .radio-label input[type="radio"] {
+            accent-color: white;
+        }
+    </style>
+
 </head>
+
 <body>
-    
+    <h1>İnce Ayarlar</h1>
+
+    <div id="menu">
+        <div class="sidebar">
+            <div class="sidebar-item active">Görünüm</div>
+            <div class="sidebar-item">Ses</div>
+            <div class="sidebar-item">Snapshot</div>
+            <div class="sidebar-item">Yapay Zeka</div>
+        </div>
+
+        <div class="content-area">
+            <h3 style="margin-top: 0; margin-bottom: 20px;">Görünüm Ayarları</h3>
+
+            <div class="setting-group">
+                <label class="setting-label">Tema Modu</label>
+                <select class="custom-select">
+                    <option value="dark">Koyu Tema</option>
+                    <option value="light">Açık Tema</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
 </body>
+
 </html>
