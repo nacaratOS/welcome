@@ -54,7 +54,13 @@ img {
     animation: fadeInAndCometoScene 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+#everything {
+    animation: fadeInAndCometoScene 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
+#finished {
+    animation: fadeInAndCometoScene 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
 @keyframes fadeInAndCometoScene {
     0% {
@@ -73,6 +79,43 @@ img {
     flex-direction: row;
     gap: 20px;
     animation: fadeInAndCometoScene 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#tweaks,
+#apps {
+    height: 140px;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px;
+    font-family: -apple-system, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 8px;
+    background-color: #1c1c1e;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#tweaks span,
+#apps span {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#tweaks:hover,
+#apps:hover {
+    background-color: #2c2c2e;
+    transform: scale(1.02);
+}
+
+#tweaks:active,
+#apps:active {
+    transform: scale(0.96);
 }
 
 #try,
