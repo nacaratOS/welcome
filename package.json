@@ -1,7 +1,7 @@
 {
-  "name": "maestro-welcome",
-  "version": "0.0.1",
-  "description": "Maestro Greeter",
+  "name": "nacarat-welcome",
+  "version": "0.8.6",
+  "description": "NacaratOS Greeter",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
