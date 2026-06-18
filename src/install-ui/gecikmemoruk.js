@@ -1,6 +1,6 @@
 function gecikmemoruk(url) {
-    document.getElementById('body').style.opacity = '0';
-    document.getElementById('body').style.transform = 'scale(0.9)';
+    document.body.style.opacity = '0';
+    document.body.style.transform = 'scale(0.9)';
 
     // To Do: bu amk fonksiyonunu düzeltmeliyim
     // if (!selectedDisk) {
