@@ -33,6 +33,7 @@
             padding: 16px;
             gap: 8px;
             box-sizing: border-box;
+            z-index: 2;
         }
 
         .sidebar-item {
@@ -58,10 +59,50 @@
 
         .content-area {
             flex: 1;
-            padding: 28px;
-            overflow-y: auto;
+            position: relative;
+            overflow: hidden;
             color: white;
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+        }
+
+        .tab-content {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 28px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes premiumBlurIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.96) translateY(15px);
+                filter: blur(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .tab-content.active h3 {
+            opacity: 0;
+            animation: premiumBlurIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .tab-content.active .setting-group {
+            opacity: 0;
+            animation: premiumBlurIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.07s;
         }
 
         .setting-group {
@@ -142,25 +183,87 @@
 
     <div id="menu">
         <div class="sidebar">
-            <div class="sidebar-item active">Görünüm</div>
-            <div class="sidebar-item">Ses</div>
-            <div class="sidebar-item">Snapshot</div>
-            <div class="sidebar-item">Yapay Zeka</div>
+            <div class="sidebar-item active" data-tab="gorunum">Görünüm</div>
+            <div class="sidebar-item" data-tab="ses">Ses</div>
+            <div class="sidebar-item" data-tab="snapshot">Snapshot</div>
+            <div class="sidebar-item" data-tab="yapay-zeke">Yapay Zeka</div>
         </div>
 
         <div class="content-area">
-            <h3 style="margin-top: 0; margin-bottom: 20px;">Görünüm Ayarları</h3>
+            
+            <div id="gorunum" class="tab-content active">
+                <h3 style="margin-top: 0; margin-bottom: 20px;">Görünüm Ayarları</h3>
+                <div class="setting-group">
+                    <label class="setting-label">Tema Modu</label>
+                    <select class="custom-select">
+                        <option value="dark">Koyu Tema</option>
+                        <option value="light">Açık Tema</option>
+                    </select>
+                </div>
+            </div>
 
-            <div class="setting-group">
-                <label class="setting-label">Tema Modu</label>
-                <select class="custom-select">
-                    <option value="dark">Koyu Tema</option>
-                    <option value="light">Açık Tema</option>
-                </select>
+            <div id="ses" class="tab-content">
+                <h3 style="margin-top: 0; margin-bottom: 20px;">Ses Efektleri</h3>
+                <div class="setting-group">
+                    <label class="setting-label">Ses Çıkışı</label>
+                    <select class="custom-select">
+                        <option value="default">Varsayılan Hoparlör</option>
+                        <option value="headphones">Kulaklık</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="snapshot" class="tab-content">
+                <h3 style="margin-top: 0; margin-bottom: 20px;">Snapshot Ayarları</h3>
+                <div class="setting-group">
+                    <label class="setting-label">Yedekleme Sıklığı</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="snapshot-freq" checked> Her Gün
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="snapshot-freq"> Her Hafta
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="yapay-zeke" class="tab-content">
+                <h3 style="margin-top: 0; margin-bottom: 20px;">Yapay Zeka Ayarları</h3>
+                <div class="setting-group">
+                    <label class="setting-label">Yetki</label>
+                    <select class="custom-select">
+                        <option value="max">Arayüz (Görsel)</option>
+                        <option value="mid">Sadece Sohbet</option>
+                        <option value="min">Kapalı</option>
+                    </select>
+                </div>
             </div>
 
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    sidebarItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    const targetTabId = item.getAttribute('data-tab');
+                    const targetContent = document.getElementById(targetTabId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
