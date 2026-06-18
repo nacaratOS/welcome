@@ -66,6 +66,14 @@ img {
     animation: fadeInAndCometoScene 1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.apps-container {
+    animation: fadeInAndCometoScene 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.app-name {
+    animation: fadeInAndCometoScene 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 @keyframes fadeInAndCometoScene {
     0% {
         opacity: 0;
