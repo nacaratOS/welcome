@@ -1,16 +1,16 @@
 {
     "slides": [
         {
-            "title": "Maestro'ya Hoş Geldiniz",
-            "content": "Maestro, Bilgisayarınızı kişiselleştirmenin ve optimize etmenin yeni yolu. Hadi başlayalım!"
+            "title": "Nacarat'a Hoş Geldiniz",
+            "content": "Nacarat, Bilgisayarınızı kişiselleştirmenin ve optimize etmenin yeni yolu. Hadi başlayalım!"
         },
         {
             "title": "Linux?",
-            "content": "Evet, Maestro bir Arch Linux dağıtımı."
+            "content": "Evet, Nacarat bir Arch Linux dağıtımı."
         },
         {
             "title": "Topluluğa Katılın",
-            "content": "Maestro topluluğuna katılarak diğer kullanıcılarla deneyimlerinizi paylaşabilir ve yeni fikirler keşfedebilirsiniz."
+            "content": "Nacarat topluluğuna katılarak diğer kullanıcılarla deneyimlerinizi paylaşabilir ve yeni fikirler keşfedebilirsiniz."
         }
     ]
 }
