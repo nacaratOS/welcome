@@ -1,5 +1,7 @@
 const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const { execSync } = require('child_process');
+const path = require('path');
+const fs = require('fs');
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -15,7 +17,27 @@ function createWindow() {
 
     Menu.setApplicationMenu(null);
 
-    win.loadFile('src/index.html');
+    const statusPath = path.join(__dirname, 'status.json');
+    let installed = false;
+
+    try {
+        if (fs.existsSync(statusPath)) {
+            const data = fs.readFileSync(statusPath, 'utf8');
+            const status = JSON.parse(data);
+
+            if (status.installed === "true" || status.installed === true) {
+                installed = true;
+            }
+        }
+    } catch (err) {
+        console.error("Status check error:", err);
+    }
+
+    if (installed) {
+        win.loadFile('src/index.html');
+    } else {
+        win.loadFile('src/setup.html');
+    }
 }
 
 app.whenReady().then(createWindow);
