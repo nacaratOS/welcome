@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize your Nacarat</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <h1>Nacarat'ı Özelleştirin</h1>
+
+    <div class="wrapper">
+        <div id="tweaks" onclick="gecikmoruk('setup-ui/tweaks.html')">
+            <img src="icons/preferences-system-linux.svg" alt="" width="60%">
+            <span>Tweaks</span>
+        </div>
+        <div id="apps" onclick="gecikmemoruk('setup-ui/apps.html')">
+            <img src="icons/apps.svg" alt="" width="60%">
+            <span>Uygulamalar</span>
+        </div>
+    </div>
+
+<script>
+        const tweaksBtn = document.getElementById('tweaks');
+        const appsBtn = document.getElementById('apps');
+
+        function startAnimation() {
+            document.body.classList.add('animate-out');
+        }
+
+        appsBtn.addEventListener('click', startAnimation);
+        tweaksBtn.addEventListener('click', startAnimation);
+
+        function gecikmemoruk(url) {
+            document.getElementById('apps').style.opacity = '0.5';
+            document.getElementById('apps').style.transform = 'scale(0.95)';
+
+            setTimeout(function () {
+                window.location.href = url;
+            }, 1000);
+        }
+
+        function gecikmoruk(url) {
+            document.getElementById('tweaks').style.opacity = '0.5';
+            document.getElementById('tweaks').style.transform = 'scale(0.95)';
+
+            setTimeout(function () {
+                window.location.href = url;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
