@@ -7,8 +7,36 @@
     <link rel="stylesheet" href="../style/style.css">
 
     <style>
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 85%;
+            margin-bottom: 20px;
+        }
+
         h1 {
-            margin-bottom: 30px;
+            margin: 0;
+        }
+
+        .toggle-btn {
+            background: #2c2c2e;
+            color: white;
+            border: 1px solid rgba(255,255,255,.1);
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .toggle-btn:hover {
+            background: #3a3a3c;
+        }
+
+        .toggle-btn:active {
+            transform: scale(0.95);
         }
 
         .apps-container {
@@ -29,6 +57,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
             gap: 20px;
+            transition: all 0.3s ease;
         }
 
         .app {
@@ -61,12 +90,35 @@
             border-radius: 18px;
             object-fit: cover;
             margin-bottom: 12px;
+            transition: 0.2s;
         }
 
         .app-name {
             font-size: 14px;
             font-weight: 600;
         }
+
+        .apps-grid.list-view {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .apps-grid.list-view .app {
+            flex-direction: row;
+            justify-content: flex-start;
+            height: 60px;
+            padding: 0 20px;
+            border-radius: 15px;
+        }
+
+        .apps-grid.list-view .app img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            margin-bottom: 0;
+            margin-right: 15px;
+        }
+
 
         .apps-container::-webkit-scrollbar {
             width: 8px;
@@ -80,11 +132,13 @@
 </head>
 <body>
 
-<h1>Uygulamalar</h1>
+<div class="header-container">
+    <h1>Uygulamalar</h1>
+    <button class="toggle-btn" id="viewToggleBtn">Liste Görünümü</button>
+</div>
 
 <div class="apps-container">
-
-    <div class="apps-grid">
+    <div class="apps-grid" id="appsGrid">
 
         <div class="app">
             <img src="../icons/apps/firefox.svg">
@@ -137,8 +191,22 @@
         </div>
 
     </div>
-
 </div>
+
+<script>
+    const toggleBtn = document.getElementById('viewToggleBtn');
+    const appsGrid = document.getElementById('appsGrid');
+
+    toggleBtn.addEventListener('click', () => {
+        appsGrid.classList.toggle('list-view');
+        
+        if (appsGrid.classList.contains('list-view')) {
+            toggleBtn.textContent = 'Izgara Görünümü';
+        } else {
+            toggleBtn.textContent = 'Liste Görünümü';
+        }
+    });
+</script>
 
 </body>
 </html>
