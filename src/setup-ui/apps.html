@@ -3,9 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apps</title>
+    <title>Nacarat Software Center</title>
+    <link rel="stylesheet" href="../style/style.css">
+
+    <style>
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .apps-container {
+            width: 85%;
+            height: 100%;
+            background: #313131;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            border: 4px solid #1f1f1f;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+            gap: 20px;
+        }
+
+        .app {
+            background: #1c1c1e;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 25px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: .25s;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+        }
+
+        .app:hover {
+            background: #2c2c2e;
+            transform: scale(1.03);
+        }
+
+        .app:active {
+            transform: scale(0.97);
+        }
+
+        .app img {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .app-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .apps-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .apps-container::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 999px;
+        }
+    </style>
 </head>
 <body>
-    
+
+<h1>Uygulamalar</h1>
+
+<div class="apps-container">
+
+    <div class="apps-grid">
+
+        <div class="app">
+            <img src="../icons/apps/firefox.svg">
+            <div class="app-name">Firefox</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/chrome.svg">
+            <div class="app-name">Google Chrome</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/vsc.svg">
+            <div class="app-name">VS Code</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/discord.svg">
+            <div class="app-name">Discord</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/steam.svg">
+            <div class="app-name">Steam</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/spotify.svg">
+            <div class="app-name">Spotify</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/libreoffice.svg">
+            <div class="app-name">LibreOffice</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/gimp.svg">
+            <div class="app-name">GIMP</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/vlc.svg">
+            <div class="app-name">VLC</div>
+        </div>
+
+        <div class="app">
+            <img src="../icons/apps/brave.svg">
+            <div class="app-name">Brave</div>
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>
