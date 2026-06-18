@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/MaestroOSX/welcome.git"
+    "url": "git+ssh://git@github.com/nacaratOS/welcome.git"
   },
   "build": {
     "appId": "com.nacarat.welcome",
@@ -27,9 +27,9 @@
   "author": "Erdem Kaymak <yusuferdemyek@gmail.com>",
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/MaestroOSX/welcome/issues"
+    "url": "https://github.com/nacaratOS/welcome/issues"
   },
-  "homepage": "https://github.com/MaestroOSX/welcome#readme",
+  "homepage": "https://github.com/nacaratOS/welcome#readme",
   "devDependencies": {
     "electron": "^41.1.0",
     "electron-builder": "^26.8.1"
