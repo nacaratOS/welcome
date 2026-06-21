@@ -22,8 +22,6 @@
 
 BASE_PACKAGES=(
     'base'
-    'linux-cachyos-lts'
-    'linux-cachyos-lts-headers'
     'linux-firmware'
     'amd-ucode'
     'intel-ucode'
