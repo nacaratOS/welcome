@@ -1,3 +1,25 @@
+#!/bin/bash
+# Nacarat OS Installer - Arch Linux based installation script
+# 
+# Usage:
+#   sudo ./nacaratinstaller.sh [DISK] [ROOT_PASS] [USER_PASS]
+#
+# Examples:
+#   sudo ./nacaratinstaller.sh /dev/sda           # Interactive mode (prompts for passwords)
+#   sudo ./nacaratinstaller.sh /dev/sda "pass123" "user123"  # Non-interactive with plain passwords
+#   sudo ./nacaratinstaller.sh /dev/nvme0n1       # NVMe disk support
+#
+# Environment Variables:
+#   ROOT_PASS - Root password (optional, will prompt if not set)
+#   USER_PASS - User password (optional, will prompt if not set)
+#
+# Requirements:
+#   - Arch Linux live environment
+#   - Internet connection
+#   - Root privileges
+#   - Target disk must be empty (will be repartitioned)
+#
+
 BASE_PACKAGES=(
     'base'
     'linux-cachyos-lts'
@@ -57,6 +79,8 @@ set -euo pipefail
 IFS=$'\n\t'
 
 TARGET_DISK="${1:-/dev/sda}"
+ROOT_PASS="${2:-}"
+USER_PASS="${3:-}"
 
 log() { echo "[nacarat] $*"; }
 
@@ -85,10 +109,14 @@ confirm() {
 
 setupdisk() {
     log "Partitioning ${TARGET_DISK} (GPT, ESP + root)"
+    if [ ! -b "$TARGET_DISK" ]; then
+        log "ERROR: Disk $TARGET_DISK not found!" >&2
+        exit 1
+    fi
     parted -s "$TARGET_DISK" mklabel gpt
     parted -s "$TARGET_DISK" mkpart ESP fat32 1MiB 513MiB
     parted -s "$TARGET_DISK" set 1 esp on
-    parted -s "$TARGET_DISK" mkpart primary ${FS} 513MiB 100%
+    parted -s "$TARGET_DISK" mkpart primary "${FS}" 513MiB 100%
 }
 
 format_and_mount() {
@@ -97,7 +125,7 @@ format_and_mount() {
 
     log "Formatting $PART1 as FAT32 and $PART2 as ${FS}"
     mkfs.fat -F32 "$PART1"
-    mkfs.${FS} "$PART2"
+    mkfs -t "${FS}" "$PART2"
 
     log "Mounting root and boot"
     mount "$PART2" /mnt
@@ -119,30 +147,55 @@ generate_fstab() {
 
 configure_system() {
     log "Configuring system (timezone, locale, hostname, users, bootloader)"
-    arch-chroot /mnt /bin/bash -e <<'EOF'
+    arch-chroot /mnt /bin/bash -e <<EOF
 set -e
-ln -sf /usr/share/zoneinfo/${ZONE} /etc/localtime
+
+# Export variables into chroot environment
+export ZONE="${ZONE}"
+export LOCALE="${LOCALE}"
+export KEYMAP="${KEYMAP}"
+export USERNAME="${USERNAME}"
+export HOSTNAME="${HOSTNAME}"
+export ROOT_PASS="${ROOT_PASS}"
+export USER_PASS="${USER_PASS}"
+
+ln -sf /usr/share/zoneinfo/\${ZONE} /etc/localtime
 hwclock --systohc
-sed -i "s/#${LOCALE}/${LOCALE}/" /etc/locale.gen || true
+sed -i "s/#\${LOCALE}/\${LOCALE}/" /etc/locale.gen || true
 locale-gen
-echo "LANG=${LOCALE}" > /etc/locale.conf
-echo "${HOSTNAME}" > /etc/hostname
+echo "LANG=\${LOCALE}" > /etc/locale.conf
+echo "\${HOSTNAME}" > /etc/hostname
+echo "KEYMAP=\${KEYMAP}" > /etc/vconsole.conf
 
-echo "KEYMAP=${KEYMAP}" > /etc/vconsole.conf
+# Root şifresi
+if [ -n "\${ROOT_PASS}" ]; then
+    echo "root:\${ROOT_PASS}" | chpasswd
+else
+    echo "Set root password:"
+    passwd
+fi
 
-echo "Set root password now:"
-passwd
+# Kullanıcı oluşturma
+useradd -m -G wheel -s /bin/zsh \${USERNAME} 2>/dev/null || true
 
-useradd -m -G wheel -s /bin/zsh ${USERNAME} || true
-echo "Set password for ${USERNAME}:"
-passwd ${USERNAME}
+# Kullanıcı şifresi
+if [ -n "\${USER_PASS}" ]; then
+    echo "\${USERNAME}:\${USER_PASS}" | chpasswd
+else
+    echo "Set password for \${USERNAME}:"
+    passwd \${USERNAME}
+fi
 
 sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers || true
 
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=nacarat || true
-grub-mkconfig -o /boot/grub/grub.cfg || true
+# Servisler
+systemctl enable NetworkManager || true
+systemctl enable sddm || true
 
-mkinitcpio -P || true
+# Bootloader ve Initramfs
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=nacarat
+grub-mkconfig -o /boot/grub/grub.cfg
+mkinitcpio -P
 EOF
 }
 
