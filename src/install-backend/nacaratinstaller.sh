@@ -22,6 +22,8 @@
 
 BASE_PACKAGES=(
     'base'
+    'linux'
+    'linux-headers'
     'linux-firmware'
     'amd-ucode'
     'intel-ucode'
