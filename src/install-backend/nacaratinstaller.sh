@@ -52,7 +52,8 @@ BASE_PACKAGES=(
     'pipewire'
     'alsa-utils'
     'xorg'
-    'sddm'
+    'lightdm'
+    'lightdm-gtk-greeter'
     'plasma-desktop'
     'dolphin'
     'konsole'
@@ -190,7 +191,7 @@ sed -i 's/^# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers || true
 
 # Servisler
 systemctl enable NetworkManager || true
-systemctl enable sddm || true
+systemctl enable lightdm || true
 
 # Bootloader ve Initramfs
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=nacarat
