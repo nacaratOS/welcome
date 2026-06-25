@@ -1,1 +1,20 @@
-Nacarat Welcome is an Open Source Linux application to let NacaratOS users to manage their OS without even needing to open terminal. What can it do? Well, it can install needed applications like, gaming, video, entertainment, it can give tips about their OS and let people customize it with ease, let them update their system and packages and much more. It's main purpose is helping the user about their Operating System.
+<h1 style="text-align: center;">NacaratOS Welcome</h1>
+
+The modern, minimalist, and user-friendly first-time setup and installer application for Nacarat OS. 
+
+This project aims to enable users to setup and manage their systems without even opening a terminal.
+
+## Features
+
+> Including frontend
+
+1. Modern and Minimalist Interface: macOS-style window controls and a sleek dark theme design that ensures a clean user experience.
+
+2. Hybrid Architecture: High-performance and reliable shell scripts running on the backend, coupled with a flexible and modern Electron frontend.
+
+3. System Performance Mode: A hardware preset slider that allows users to configure the system balance between efficiency and performance during setup.
+
+  | Welcome & Disk | User & Regional |
+  | :---: | :---: |
+  | ![Welcome](assets/index.png) | ![User](assets/user.png) |
+  | ![Disk](assets/disk.png) | ![Timezone](assets/loc.png) |
