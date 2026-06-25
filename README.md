@@ -18,3 +18,30 @@ This project aims to enable users to setup and manage their systems without even
   | :---: | :---: |
   | ![Welcome](assets/index.png) | ![User](assets/user.png) |
   | ![Disk](assets/disk.png) | ![Timezone](assets/loc.png) |
+
+## How to run
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/nacaratOS/welcome
+   cd welcome
+   ```
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Run
+   ```bash
+   npm start
+   ```
+
+## Credits
+
+<a href="https://github.com/GamerCinarTR">
+  <img src="https://github.com/GamerCinarTR.png" width="50px" style="border-radius: 40%; margin-right: 8px;" alt="Çınar Ali"/>
+</a>
+<a href="https://github.com/YusufErdemK">
+  <img src="https://github.com/YusufErdemK.png" width="50px" style="border-radius: 40%;" alt="Erdamn"/>
+</a>
+
+Made by Çınar Ali & Erdamn.
