@@ -38,10 +38,11 @@ This project aims to enable users to setup and manage their systems without even
 ## Credits
 
 <a href="https://github.com/GamerCinarTR">
-  <img src="https://github.com/GamerCinarTR.png" width="50px" style="border-radius: 40%; margin-right: 8px;" alt="Çınar Ali"/>
+  <img src="https://images.weserv.nl/?url=github.com/GamerCinarTR.png&mask=circle" width="50" height="50" alt="Çınar Ali">
 </a>
+&nbsp;&nbsp;
 <a href="https://github.com/YusufErdemK">
-  <img src="https://github.com/YusufErdemK.png" width="50px" style="border-radius: 40%;" alt="Erdamn"/>
+  <img src="https://images.weserv.nl/?url=github.com/YusufErdemK.png&mask=circle" width="50" height="50" alt="Erdamn">
 </a>
 
 Made by Çınar Ali & Erdamn.
