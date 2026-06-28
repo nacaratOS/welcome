@@ -26,13 +26,71 @@
             color: #fff;
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
         }
+
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #1f1f1f;
+            border: 2px solid #444;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        input[type="checkbox"]:checked {
+            background: #0072ec;
+            border-color: #0072ec;
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 45%;
+            width: 5px;
+            height: 11px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        input[type="checkbox"]:hover {
+            border-color: #0072ec;
+            box-shadow: 0 0 8px rgba(0, 114, 236, 0.3);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        input[type="checkbox"]+label {
+            font-size: 16px;
+            color: #fff !important;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .modal-close-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
     </style>
 </head>
 
-<body id="body"
-    style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0;">
+<body>
 
-    <h1 style="color: white; font-family: sans-serif; margin-bottom: 30px;">Artık Hazırsınız!</h1>
+    <h1>Artık Hazırsınız!</h1>
 
     <div id="finished">
         <span>Tüm ayarlamalar tamamlandı! Artık kuruluma hazırsınız.</span>
@@ -40,7 +98,46 @@
 
     <button id="continue-btn">Kur</button>
 
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-box">
+            <h2>Kurulumu başlatmak istediğine emin misin?</h2>
+            <p>Kurulum hedef diskteki tüm içeriği silecektir!</p>
+
+            <div class="checkbox-group">
+                <input type="checkbox" name="onay" id="approve">
+                <label for="approve">Onaylıyorum</label>
+            </div>
+
+            <button class="modal-close-btn" id="closeModalBtn" disabled>Kur</button>
+        </div>
+    </div>
+
     <script src="gecikmemoruk.js"></script>
+
+    <script>
+        const continueBtn = document.getElementById('continue-btn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalim = document.getElementById('customModal');
+        const approveCheckbox = document.getElementById('approve');
+
+        continueBtn.addEventListener('click', () => {
+            customModal.classList.add('active');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            customModal.classList.remove('active');
+        });
+
+        modalim.addEventListener('click', (e) => {
+            if (e.target === customModal) {
+                customModal.classList.remove('active');
+            }
+        });
+
+        approveCheckbox.addEventListener('change', () => {
+            closeModalBtn.disabled = !approveCheckbox.checked;
+        });
+    </script>
 
 </body>
 
