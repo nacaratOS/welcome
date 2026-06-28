@@ -1,25 +1,3 @@
-#!/bin/bash
-# Nacarat OS Installer - Arch Linux based installation script
-# 
-# Usage:
-#   sudo ./nacaratinstaller.sh [DISK] [ROOT_PASS] [USER_PASS]
-#
-# Examples:
-#   sudo ./nacaratinstaller.sh /dev/sda           # Interactive mode (prompts for passwords)
-#   sudo ./nacaratinstaller.sh /dev/sda "pass123" "user123"  # Non-interactive with plain passwords
-#   sudo ./nacaratinstaller.sh /dev/nvme0n1       # NVMe disk support
-#
-# Environment Variables:
-#   ROOT_PASS - Root password (optional, will prompt if not set)
-#   USER_PASS - User password (optional, will prompt if not set)
-#
-# Requirements:
-#   - Arch Linux live environment
-#   - Internet connection
-#   - Root privileges
-#   - Target disk must be empty (will be repartitioned)
-#
-
 BASE_PACKAGES=(
     'base'
     'linux'
@@ -92,8 +70,14 @@ check_root() {
     fi
 }
 
+check_device_safety() {
+    if [ "$(hostname)" = "kaymak" ]; then
+        echo "sec: can't install on 'kaymak' device" >&2
+        exit 1
+    fi
+}
+
 part_suffix() {
-    # /dev/sda -> /dev/sda1 ; /dev/nvme0n1 -> /dev/nvme0n1p1
     case "$1" in
         /dev/nvme*) echo "${1}p$2" ;;
         *) echo "${1}$2" ;;
@@ -209,6 +193,7 @@ trap cleanup EXIT
 
 main() {
     check_root
+    check_device_safety
     log "Target disk: ${TARGET_DISK}"
     if ! confirm "This will erase ${TARGET_DISK}. Continue?"; then
         log "Aborted by user"
