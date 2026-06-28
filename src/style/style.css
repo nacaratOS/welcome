@@ -13,7 +13,8 @@ body {
     overflow: hidden;
 }
 
-h1, h3 {
+h1,
+h3 {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
     font-weight: 650;
     color: white;
@@ -206,4 +207,84 @@ img {
     background: #0072ec;
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 9999;
+}
+
+.modal-box {
+    background: #1c1c1e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    padding: 35px;
+    width: 85%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transform: scale(0.9) translateY(10px);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.modal-box h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Arimo", sans-serif;
+    font-weight: 650;
+    color: white;
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.modal-box p {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.modal-close-btn {
+    padding: 11px 22px;
+    background: #910707;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: -apple-system, sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: #3a3a3c;
+    transform: scale(1.04);
+}
+
+.modal-close-btn:active {
+    transform: scale(0.96);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1) translateY(0);
 }
