@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +23,9 @@
         .toggle-btn {
             background: #2c2c2e;
             color: white;
-            border: 1px solid rgba(255,255,255,.1);
-            padding: 10px 20px;
-            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            padding: 10px 16px;
+            border-radius: 17px;
             cursor: pointer;
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
             font-weight: 500;
@@ -37,6 +38,10 @@
 
         .toggle-btn:active {
             transform: scale(0.95);
+        }
+
+        .btn-icon {
+            filter: invert(1) brightness(2);
         }
 
         .apps-container {
@@ -55,14 +60,14 @@
 
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             gap: 20px;
             transition: all 0.3s ease;
         }
 
         .app {
             background: #1c1c1e;
-            border: 1px solid rgba(255,255,255,.08);
+            border: 1px solid rgba(255, 255, 255, .08);
             border-radius: 25px;
             height: 150px;
             display: flex;
@@ -130,83 +135,87 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="header-container">
-    <h1>Uygulamalar</h1>
-    <button class="toggle-btn" id="viewToggleBtn">Liste Görünümü</button>
-</div>
-
-<div class="apps-container">
-    <div class="apps-grid" id="appsGrid">
-
-        <div class="app">
-            <img src="../icons/apps/firefox.svg">
-            <div class="app-name">Firefox</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/chrome.svg">
-            <div class="app-name">Google Chrome</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/vsc.svg">
-            <div class="app-name">VS Code</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/discord.svg">
-            <div class="app-name">Discord</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/steam.svg">
-            <div class="app-name">Steam</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/spotify.svg">
-            <div class="app-name">Spotify</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/libreoffice.svg">
-            <div class="app-name">LibreOffice</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/gimp.svg">
-            <div class="app-name">GIMP</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/vlc.svg">
-            <div class="app-name">VLC</div>
-        </div>
-
-        <div class="app">
-            <img src="../icons/apps/brave.svg">
-            <div class="app-name">Brave</div>
-        </div>
-
+    <div class="header-container">
+        <h1>Uygulamalar</h1>
+        <button class="toggle-btn" id="viewToggleBtn" aria-label="Liste Görünümü">
+            <img src="../icons/view-list-bullet-symbolic.svg" alt="Liste Görünümü" class="btn-icon">
+        </button>
     </div>
-</div>
 
-<script>
-    const toggleBtn = document.getElementById('viewToggleBtn');
-    const appsGrid = document.getElementById('appsGrid');
+    <div class="apps-container">
+        <div class="apps-grid" id="appsGrid">
 
-    toggleBtn.addEventListener('click', () => {
-        appsGrid.classList.toggle('list-view');
-        
-        if (appsGrid.classList.contains('list-view')) {
-            toggleBtn.textContent = 'Izgara Görünümü';
-        } else {
-            toggleBtn.textContent = 'Liste Görünümü';
-        }
-    });
-</script>
+            <div class="app">
+                <img src="../icons/apps/firefox.svg">
+                <div class="app-name">Firefox</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/chrome.svg">
+                <div class="app-name">Google Chrome</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/vsc.svg">
+                <div class="app-name">VS Code</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/discord.svg">
+                <div class="app-name">Discord</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/steam.svg">
+                <div class="app-name">Steam</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/spotify.svg">
+                <div class="app-name">Spotify</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/libreoffice.svg">
+                <div class="app-name">LibreOffice</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/gimp.svg">
+                <div class="app-name">GIMP</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/vlc.svg">
+                <div class="app-name">VLC</div>
+            </div>
+
+            <div class="app">
+                <img src="../icons/apps/brave.svg">
+                <div class="app-name">Brave</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('viewToggleBtn');
+        const appsGrid = document.getElementById('appsGrid');
+
+        toggleBtn.addEventListener('click', () => {
+            appsGrid.classList.toggle('list-view');
+
+            if (appsGrid.classList.contains('list-view')) {
+                toggleBtn.textContent = 'Izgara Görünümü';
+            } else {
+                toggleBtn.textContent = 'Liste Görünümü';
+            }
+        });
+    </script>
 
 </body>
+
 </html>
